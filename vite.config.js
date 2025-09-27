@@ -5,13 +5,18 @@ import tagger from "@dhiwise/component-tagger";
 
 export default defineConfig({
   build: {
-    outDir: "build", // ✅ Keep this to match your vercel.json
+    outDir: "build",
     chunkSizeWarningLimit: 2000,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      }
+    }
   },
-  base: './', // ✅ Change from empty string to './'
+  base: '/', // ✅ Change back to '/' for root path
   plugins: [tsconfigPaths(), react(), tagger()],
   server: {
-    port: 4028, // ✅ Change from string to number
+    port: 4028,
     host: "0.0.0.0",
     strictPort: true,
     allowedHosts: ['.amazonaws.com', '.builtwithrocket.new']
